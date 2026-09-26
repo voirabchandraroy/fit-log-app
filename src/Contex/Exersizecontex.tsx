@@ -1,12 +1,24 @@
 'use client'
+import { IExercise } from '@/types/type';
 import { createContext, ReactNode, useState } from 'react';
 
-export const ExersizeContex=createContext({})
+interface IExersisecontex{
+        add:IExercise[],
+        setadd:React.Dispatch<React.SetStateAction<IExercise[]>>,
+        sev:IExercise[],
+        setsev:React.Dispatch<React.SetStateAction<IExercise[]>>
+}
 
-const ExersizeProvider = ({children}:{children:ReactNode}) => {
-    
-    const [add,setadd]=useState([])
-    const [sev,setsev]=useState([])
+export const ExersizeContex=createContext<IExersisecontex>({
+        add:[],
+        setadd:()=>{},
+        sev:[],
+        setsev:()=>{}    
+})
+
+const ExersizeProvider = ({children}:{children:ReactNode}) => {   
+    const [add,setadd]=useState<IExercise[]>([])
+    const [sev,setsev]=useState<IExercise[]>([])
 
     const sheareddata={
         add,
