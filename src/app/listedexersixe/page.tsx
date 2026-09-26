@@ -25,7 +25,6 @@ const Listedexersize = () => {
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // ✅ নতুন: loading state
     const [pageLoading, setPageLoading] = useState(true);
 
     useEffect(() => {
@@ -40,7 +39,7 @@ const Listedexersize = () => {
             }
         };
 
-        
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
