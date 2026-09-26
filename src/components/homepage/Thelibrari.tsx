@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import React from 'react';
 import Exersicecard from '../sheared/Exersicecard';
 import { IExercise } from '@/types/type';
 

@@ -1,6 +1,5 @@
 import Banner from "@/components/homepage/Banner";
 import Thelibrari from "@/components/homepage/Thelibrari";
-import Image from "next/image";
 import { Suspense } from "react";
 
 export default function Home() {

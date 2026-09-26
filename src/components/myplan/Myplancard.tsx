@@ -3,7 +3,7 @@ import { ExersizeContex } from '@/Contex/Exersizecontex';
 import { IExercise } from '@/types/type';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import { toast } from 'react-toastify';
 interface exersizeinterface {
     exersize: IExercise
@@ -11,8 +11,6 @@ interface exersizeinterface {
 
 const Myplancard = ({ exersize }: exersizeinterface) => {
     const { setadd } = useContext(ExersizeContex);
-
-    const [isDone, setIsDone] = useState(false);
 
     const handleRemove = () => {
         setadd((prev: IExercise[]) => prev.filter((item) => item.id !== exersize.id));
