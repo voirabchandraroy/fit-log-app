@@ -13,7 +13,7 @@ const getlibrary = async () => {
 const Thelibrari = async () => {
     const exersizes = await getlibrary()
     return (
-        <section className="bg-[#0b0c0e] px-4 py-10 sm:px-6 lg:px-8">
+        <section id="library" className="bg-[#0b0c0e] px-4 py-10 sm:px-6 lg:px-8">
             <div className="container mx-auto">
 
                 {/* Small Line */}
