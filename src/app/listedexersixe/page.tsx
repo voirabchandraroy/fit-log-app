@@ -24,12 +24,23 @@ const Listedexersize = () => {
 
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // ✅ নতুন: loading state
+    const [pageLoading, setPageLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setPageLoading(false), 600);
+        return () => clearTimeout(timer);
+    }, []);
+
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
                 setOpen(false);
             }
         };
+
+        
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
@@ -54,6 +65,14 @@ const Listedexersize = () => {
     const sortedSev = sortExercises(sev);
     const currentLabel = sortOptions.find((opt) => opt.value === sortBy)?.label;
 
+    if (pageLoading) {
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-[#0a0b0d]">
+                <p className="text-lg font-semibold text-[#858a94]">Loading workouts…</p>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-[#0a0b0d] px-4 py-8">
             <div className="container mx-auto">
@@ -77,8 +96,8 @@ const Listedexersize = () => {
                         <button
                             onClick={() => setActiveTab('plan')}
                             className={`rounded-full px-4 py-1.5 text-sm font-semibold transition ${activeTab === 'plan'
-                                    ? 'bg-[#24272d] text-white'
-                                    : 'text-[#858a94] hover:text-white'
+                                ? 'bg-[#24272d] text-white'
+                                : 'text-[#858a94] hover:text-white'
                                 }`}
                         >
                             Today&apos;s Plan
@@ -86,8 +105,8 @@ const Listedexersize = () => {
                         <button
                             onClick={() => setActiveTab('saved')}
                             className={`rounded-full px-4 py-1.5 text-sm font-bold transition ${activeTab === 'saved'
-                                    ? 'bg-[#24272d] text-white'
-                                    : 'text-[#858a94] hover:text-white'
+                                ? 'bg-[#24272d] text-white'
+                                : 'text-[#858a94] hover:text-white'
                                 }`}
                         >
                             Saved
@@ -118,8 +137,8 @@ const Listedexersize = () => {
                                             setOpen(false);
                                         }}
                                         className={`block w-full px-3 py-2 text-left text-sm transition ${sortBy === opt.value
-                                                ? 'bg-[#c8ff00] font-bold text-black'
-                                                : 'text-white hover:bg-[#24272d]'
+                                            ? 'bg-[#c8ff00] font-bold text-black'
+                                            : 'text-white hover:bg-[#24272d]'
                                             }`}
                                     >
                                         {opt.label}
@@ -129,8 +148,6 @@ const Listedexersize = () => {
                         )}
                     </div>
                 </div>
-
-                {/* Tab Content */}
                 <div className="rounded-xl border border-[#292d34] bg-[#15171c] p-6">
                     {activeTab === 'plan' ? (
                         <div className="flex flex-col gap-4">
@@ -188,4 +205,4 @@ const Listedexersize = () => {
     );
 };
 
-export default Listedexersize;
+export default Listedexersize
